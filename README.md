@@ -36,10 +36,9 @@
 ---
 The question our team would like to answer is how do environmental parameters affect the area of kelp expression on the sea surface? Is there variation in their effects as a function of time? 
 
-## Analysis
--
-Once data is cleaned and joined, we will then run a group correlation matrix and linear regression tests to determine which combination of environmental parameters best predicts bed area. The combinations will include, in-site temperatures taken by volunteers during area surveys, temperature from the proxy data set, salinity from the proxy data set, dissolved oxygen from the proxy data set as well as permutations in the year to measure if lag time is a better predictor for kelp growth. 
+ **Analysis:** 
 ---
+Once data is cleaned and joined, we will then run a group correlation matrix and linear regression tests to determine which combination of environmental parameters best predicts bed area. The combinations will include, in-site temperatures taken by volunteers during area surveys, temperature from the proxy data set, salinity from the proxy data set, dissolved oxygen from the proxy data set as well as permutations in the year to measure if lag time is a better predictor for kelp growth. 
 
 ## Results
 

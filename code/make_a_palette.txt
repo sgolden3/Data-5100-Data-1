@@ -1,0 +1,63 @@
+from matplotlib.colors import ListedColormap
+import matplotlib.pyplot as plt
+import numpy as np
+
+# Define your custom colors
+my_palette = ['#ffffff', '#dc4f4f', '#91d3ce', "#00d4a3", '#04a383', '#01726b',
+                 '#236883','#00332d', '#041829', "#964D4A", '#49837E']
+
+import numpy as np
+
+x = np.random.rand(50)
+y = np.random.rand(50)
+categories = np.random.choice(['Ebey', 'North Beach', 'Shannon Point East', 'Shannon Point West'], size=50)
+
+# Create a color list based on categories
+                    #
+color_map = {'Ebey': '#91d3ce', 'North Beach': '#041829', 'Shannon Point East': '#964D4A', 'Shannon Point West': '#49837E'}
+colors = [color_map[cat] for cat in categories]
+
+# look at the palette
+print(my_palette)
+sns.palplot(my_palette)
+
+
+
+# an example
+# Map the site codes to the color map categories
+site_code_to_category = {
+    'EBL': 'Ebey',
+    'NB-E': 'North Beach',
+    'SHPT-E': 'Shannon Point East',
+    'SHPT-W': 'Shannon Point West'
+}
+
+# Filter df_max for the requested site codes
+sites_of_interest = ['EBL', 'NB-E', 'SHPT-E', 'SHPT-W']
+df_filtered = df_max[df_max['Site Code'].isin(sites_of_interest)].copy()
+
+# Create a 'Site Category' column for coloring based on the predefined color_map
+df_filtered['Site Category'] = df_filtered['Site Code'].map(site_code_to_category)
+
+# Calculate average temperature per site category per year
+avg_temps_by_site_year = df_filtered.groupby(['Survey Year', 'Site Category'])['Temp_t'].mean().reset_index()
+
+# Plotting
+plt.figure(figsize=(12, 7))
+sns.lineplot(
+    data=avg_temps_by_site_year,
+    x='Survey Year',
+    y='Temp_t',
+    hue='Site Category',
+    palette=color_map, # Use the predefined color_map
+    marker='o'
+)
+
+plt.title('Average Temperature Over Years for Selected Sites')
+plt.xlabel('Survey Year')
+plt.ylabel('Average Temperature (C)')
+plt.xticks(avg_temps_by_site_year['Survey Year'].unique())
+plt.grid(True)
+plt.legend(title='Site Category')
+plt.tight_layout()
+plt.show()
